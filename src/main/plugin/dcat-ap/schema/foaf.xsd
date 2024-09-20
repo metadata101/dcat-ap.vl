@@ -40,7 +40,7 @@
     </xs:sequence>
   </xs:complexType>
   <!-- foaf:Agent-->
-  <xs:element name="primaryTopic" type="rdf:Resource"/>
+  <xs:element name="primaryTopic" type="rdf:ResourceRef"/>
   <xs:element name="page" type="foaf:Document"/>
   <xs:element name="homepage" type="foaf:Document"/>
   <xs:element name="mbox" type="xs:anyURI"/>

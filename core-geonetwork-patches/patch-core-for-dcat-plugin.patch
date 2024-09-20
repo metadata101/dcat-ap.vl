@@ -4,6 +4,7 @@ Date: Thu, 20 Jun 2024 09:48:09 +0200
 Subject: [PATCH] Patch core for DCAT2 plugin
 
 ---
+ .gitignore                                    |  1 +
  .../geonet/kernel/search/EsSearchManager.java |  1 +
  .../java/org/fao/geonet/util/XslUtil.java     | 84 ++++++++++++++++++-
  .../HarvesterSettingRepository.java           | 11 +++
@@ -22,8 +23,20 @@ Subject: [PATCH] Patch core for DCAT2 plugin
  .../admin/harvest/type/geonetwork.js          |  4 +-
  .../main/webapp/xsl/xml/harvesting/csw.xsl    |  3 +
  .../webapp/xsl/xml/harvesting/geonetwork.xsl  |  3 +
- 18 files changed, 272 insertions(+), 16 deletions(-)
+ 19 files changed, 273 insertions(+), 16 deletions(-)
 
+diff --git a/.gitignore b/.gitignore
+index cbd4fe33ea..62970213f3 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -69,6 +69,7 @@ web/src/main/webapp/WEB-INF/data/config/schema_plugins/csw-record
+ web/src/main/webapp/WEB-INF/data/config/schema_plugins/dublin-core
+ web/src/main/webapp/WEB-INF/data/config/schema_plugins/iso19*
+ web/src/main/webapp/WEB-INF/data/config/schema_plugins/schemaplugin-uri-catalog.xml
++web/src/main/webapp/WEB-INF/data/config/schema_plugins/dcat-ap
+ web/src/main/webapp/WEB-INF/data/config/schemaplugin-uri-catalog.xml
+ web/src/main/webapp/WEB-INF/data/data/backup
+ web/src/main/webapp/WEB-INF/data/data/metadata_data
 diff --git a/core/src/main/java/org/fao/geonet/kernel/search/EsSearchManager.java b/core/src/main/java/org/fao/geonet/kernel/search/EsSearchManager.java
 index bfd783bc5f..ae5dae722b 100644
 --- a/core/src/main/java/org/fao/geonet/kernel/search/EsSearchManager.java

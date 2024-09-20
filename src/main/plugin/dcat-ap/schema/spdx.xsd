@@ -14,7 +14,7 @@
         <xs:complexType>
           <xs:sequence>
             <!-- mandatory properties for spdx:Checksum-->
-            <xs:element name="algorithm" type="rdf:Resource" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="algorithm" type="rdf:ResourceRef" minOccurs="1" maxOccurs="1"/>
             <xs:element name="checksumValue" type="rdf:TypedLiteral" minOccurs="1" maxOccurs="1"/>
           </xs:sequence>
           <xs:attribute ref="rdf:about"/>

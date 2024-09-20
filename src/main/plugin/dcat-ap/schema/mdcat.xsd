@@ -23,9 +23,9 @@
   <xs:import namespace="http://www.w3.org/2004/02/skos/core#" schemaLocation="skos.xsd"/>
   <xs:import namespace="http://purl.org/dc/terms/" schemaLocation="dcterms.xsd"/>
 
-  <xs:element name="landingspaginaVoorAuthenticatie" type="rdf:Resource"/>
-  <xs:element name="landingspaginaVoorStatusinformatie" type="rdf:Resource"/>
-  <xs:element name="landingspaginaVoorGebruiksinformatie" type="rdf:Resource"/>
+  <xs:element name="landingspaginaVoorAuthenticatie" type="rdf:ResourceRef"/>
+  <xs:element name="landingspaginaVoorStatusinformatie" type="rdf:ResourceRef"/>
+  <xs:element name="landingspaginaVoorGebruiksinformatie" type="rdf:ResourceRef"/>
   <xs:element name="levensfase" type="skos:Concept"/>
   <xs:element name="ontwikkelingstoestand" type="skos:Concept"/>
   <xs:element name="MAGDA-categorie" type="dct:subject"/>

@@ -93,9 +93,14 @@ The Resource Description Framework [RDF] is defined to have an extensible system
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <!-- rdf:Resource-->
-  <xs:complexType name="Resource">
+  <!-- rdf:ResourceRef-->
+  <xs:complexType name="ResourceRef">
     <xs:attribute ref="rdf:resource" use="required"/>
+  </xs:complexType>
+  <!-- rdf:Resource -->
+  <xs:complexType name="Resource" abstract="true">
+    <xs:attribute ref="rdf:about"/>
+    <xs:attribute ref="rdf:nodeID"/>
   </xs:complexType>
   <!-- CatalogRoot -->
   <xs:complexType name="CatalogRoot">
@@ -104,7 +109,7 @@ The Resource Description Framework [RDF] is defined to have an extensible system
     </xs:choice>
   </xs:complexType>
   <!-- individual elements -->
-  <xs:element name="type" type="rdf:Resource"/>
+  <xs:element name="type" type="rdf:ResourceRef"/>
   <xs:attribute name="about" type="xs:anyURI"/>
   <xs:attribute name="resource" type="xs:anyURI"/>
   <xs:attribute name="datatype" type="xs:anyURI"/>

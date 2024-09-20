@@ -11,7 +11,6 @@
         xmlns:vcard="http://www.w3.org/2006/vcard/ns#"
         xmlns:foaf="http://xmlns.com/foaf/0.1/"
         xmlns:owl="http://www.w3.org/2002/07/owl#"
-        xmlns:mdcat="https://data.vlaanderen.be/ns/metadata-dcat#"
         xmlns:schema="http://schema.org/"
         xmlns:locn="http://www.w3.org/ns/locn#"
         xsi:noNamespaceSchemaLocation="../../../../../../config-editor.xsd">
@@ -36,20 +35,6 @@
         max=""
         labelKey="dcat.addThemes"/>
     </for>
-    <for name="mdcat:MAGDA-categorie" use="thesaurus-list-picker" profile="metadata-dcat">
-      <directiveAttributes
-        thesaurus="external.theme.magda-domain"
-        xpath="/mdcat:MAGDA-categorie"
-        max=""
-        labelKey="mdcat.addMagdaCategorie"/>
-    </for>
-    <for name="mdcat:statuut" use="thesaurus-list-picker">
-      <directiveAttributes
-        thesaurus="external.theme.GDI-Vlaanderen-trefwoorden"
-        xpath="/mdcat:statuut"
-        max=""
-        labelKey="mdcat.addStatuut"/>
-    </for>
     <for name="dct:accessRights" xpath="dcat:Dataset" use="thesaurus-list-picker">
       <directiveAttributes
         thesaurus="external.theme.access-right"
@@ -61,13 +46,6 @@
       <directiveAttributes
         thesaurus="external.theme.access-right-service"
         xpath="/dct:accessRights"
-        max="1"
-        labelKey="dcat.addAccessRight"/>
-    </for>
-    <for name="dct:accessRights" xpath="dcat:Distribution" use="thesaurus-list-picker">
-      <directiveAttributes
-        thesaurus="external.theme.access-right"
-        xpath="/dcat:Distribution/dct:accessRights"
         max="1"
         labelKey="dcat.addAccessRight"/>
     </for>
@@ -230,36 +208,6 @@
         </snippet>
       </template>
     </for>
-    <for name="mdcat:landingspaginaVoorAuthenticatie" templateModeOnly="true" forceLabel="true" label="key">
-      <template>
-        <values>
-          <key label="key" xpath="@rdf:resource" tooltip="mdcat:landingspaginaVoorAuthenticatie" required="true"/>
-        </values>
-        <snippet>
-          <mdcat:landingspaginaVoorAuthenticatie rdf:resource="{{key}}"/>
-        </snippet>
-      </template>
-    </for>
-    <for name="mdcat:landingspaginaVoorStatusinformatie" templateModeOnly="true" forceLabel="true" label="key">
-      <template>
-        <values>
-          <key label="key" xpath="@rdf:resource" tooltip="mdcat:landingspaginaVoorStatusinformatie" required="true"/>
-        </values>
-        <snippet>
-          <mdcat:landingspaginaVoorStatusinformatie rdf:resource="{{key}}"/>
-        </snippet>
-      </template>
-    </for>
-    <for name="mdcat:landingspaginaVoorGebruiksinformatie" templateModeOnly="true" forceLabel="true" label="key">
-      <template>
-        <values>
-          <key label="key" xpath="@rdf:resource" tooltip="mdcat:landingspaginaVoorGebruiksinformatie" required="true"/>
-        </values>
-        <snippet>
-          <mdcat:landingspaginaVoorGebruiksinformatie rdf:resource="{{key}}"/>
-        </snippet>
-      </template>
-    </for>
     <for name="dct:relation" templateModeOnly="true" forceLabel="true" label="key">
       <template>
         <values>
@@ -349,21 +297,6 @@
           <spdx:algorithm rdf:resource="{{key}}"/>
         </snippet>
       </template>
-    </for>
-
-    <for name="mdcat:levensfase" use="thesaurus-list-picker">
-      <directiveAttributes
-        thesaurus="external.theme.levensfase"
-        xpath="/mdcat:levensfase"
-        max="1"
-        labelKey="mdcat.addLevensfase"/>
-    </for>
-    <for name="mdcat:ontwikkelingstoestand" use="thesaurus-list-picker">
-      <directiveAttributes
-        thesaurus="external.theme.ontwikkelingstoestand"
-        xpath="/mdcat:ontwikkelingstoestand"
-        max="1"
-        labelKey="mdcat.addOntwikkelingstoestand"/>
     </for>
   </fields>
 
@@ -537,12 +470,6 @@
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dcat:keyword"
                  or="keyword"
                  in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/mdcat:MAGDA-categorie"
-                 or="MAGDA-categorie"
-                 in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/mdcat:statuut"
-                 or="statuut"
-                 in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dcat:theme"
                  or="theme"
                  in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
@@ -553,9 +480,6 @@
         <section name="versionInformation">
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/owl:versionInfo"
                  or="versionInfo"
-                 in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dct:created"
-                 or="created"
                  in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dct:modified"
                  or="modified"
@@ -587,20 +511,6 @@
             <template>
               <snippet>
                 <dcat:landingPage rdf:resource=""/>
-              </snippet>
-            </template>
-          </action>
-
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dct:rights"/>
-          <action type="add" or="rights" in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset">
-            <template>
-              <snippet>
-                <dct:rights>
-                  <dct:RightsStatement>
-                    <dct:title/>
-                    <dct:description/>
-                  </dct:RightsStatement>
-                </dct:rights>
               </snippet>
             </template>
           </action>
@@ -692,7 +602,7 @@
             <section xpath="dcat:Distribution/dct:conformsTo"/>
             <action type="add" or="conformsTo" in="dcat:Distribution">
               <template>
-                <snippets name="protocols"/>
+                <snippets name="protocols-vl"/>
               </template>
             </action>
           </section>
@@ -733,18 +643,6 @@
               </snippet>
             </template>
           </action>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:publisher"/>
-          <action type="add" or="publisher" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService">
-            <template>
-              <snippet>
-                <dct:publisher>
-                  <foaf:Agent>
-                    <foaf:name xml:lang=""/>
-                  </foaf:Agent>
-                </dct:publisher>
-              </snippet>
-            </template>
-          </action>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dcat:endpointURL"/>
           <action type="add" or="endpointURL" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService">
             <template>
@@ -771,112 +669,15 @@
               </snippet>
             </template>
           </action>
-
           <action type="associatedResource" name="linkToDataset" process="dataset"/>
-
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dcat:keyword"/>
-          <action type="add" or="keyword" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService">
-            <template>
-              <snippet>
-                <dcat:keyword/>
-              </snippet>
-            </template>
-          </action>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:MAGDA-categorie" or="MAGDA-categorie" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:statuut" or="statuut" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dcat:theme" or="theme" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:identifier"/>
-        </section>
-
-        <section name="versionInformation">
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/owl:versionInfo"/>
-          <action type="add" or="versionInfo" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService">
-            <template>
-              <snippet>
-                <owl:versionInfo/>
-              </snippet>
-            </template>
-          </action>
-        </section>
-
-        <section name="usageInformation">
-          <section xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dcat:contactPoint"/>
-          <action type="add" or="contactPoint" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService">
-            <template>
-              <snippet>
-                <dcat:contactPoint>
-                  <vcard:Organization>
-                    <vcard:hasEmail rdf:resource=""/>
-                  </vcard:Organization>
-                </dcat:contactPoint>
-              </snippet>
-            </template>
-          </action>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dcat:landingPage"/>
-          <action type="add" or="landingPage" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService">
-            <template>
-              <snippet>
-                <dcat:landingPage rdf:resource=""/>
-              </snippet>
-            </template>
-          </action>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:landingspaginaVoorAuthenticatie"/>
-          <action type="add" or="landingspaginaVoorAuthenticatie" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService">
-            <template>
-              <snippet>
-                <mdcat:landingspaginaVoorAuthenticatie rdf:resource=""/>
-              </snippet>
-            </template>
-          </action>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:landingspaginaVoorStatusinformatie"/>
-          <action type="add" or="landingspaginaVoorStatusinformatie" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService">
-            <template>
-              <snippet>
-                <mdcat:landingspaginaVoorStatusinformatie rdf:resource=""/>
-              </snippet>
-            </template>
-          </action>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:landingspaginaVoorGebruiksinformatie"/>
-          <action type="add" or="landingspaginaVoorGebruiksinformatie" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService">
-            <template>
-              <snippet>
-                <mdcat:landingspaginaVoorGebruiksinformatie rdf:resource=""/>
-              </snippet>
-            </template>
-          </action>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:rights"/>
-          <action type="add" or="rights" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService">
-            <template>
-              <snippet>
-                <dct:rights>
-                  <dct:RightsStatement>
-                    <dct:title xml:lang=""/>
-                    <dct:description xml:lang=""/>
-                  </dct:RightsStatement>
-                </dct:rights>
-              </snippet>
-            </template>
-          </action>
         </section>
 
         <section name="serviceInformation">
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:levensfase" or="levensfase" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:ontwikkelingstoestand" or="ontwikkelingstoestand" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:accessRights" or="accessRights" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
           <section xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:license"/>
           <action type="add" or="license" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService">
             <template>
               <snippets name="licenses"/>
-            </template>
-          </action>
-        </section>
-
-        <section name="extraInformation">
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:language" or="language" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <section xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:conformsTo"/>
-          <action type="add" or="conformsTo" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService">
-            <template>
-              <snippets name="protocols"/>
             </template>
           </action>
         </section>
@@ -906,8 +707,6 @@
         <for name="dct:title"/>
         <for name="dct:description"/>
         <for name="dcat:keyword"/>
-        <for name="mdcat:MAGDA-categorie"/>
-        <for name="mdcat:statuut"/>
         <for name="dcat:theme"/>
         <!-- Version info -->
         <for name="owl:versionInfo"/>
@@ -972,8 +771,6 @@
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dct:description" or="description" in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
           <section xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dct:publisher" or="publisher" in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dcat:keyword" or="keyword" in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/mdcat:MAGDA-categorie"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/mdcat:statuut"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dcat:theme"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dct:identifier" or="identifier" in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/adms:identifier"/>
@@ -992,7 +789,6 @@
           <section xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dcat:contactPoint" or="contactPoint" in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dct:accessRights" or="accessRights" in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dcat:landingPage" or="landingPage" in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset/dct:rights" or="rights" in="/rdf:RDF/dcat:Catalog/dcat:dataset/dcat:Dataset"/>
         </section>
 
         <section name="geographicalInformation">
@@ -1058,47 +854,17 @@
         <section name="basicInformation">
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:title" or="title" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:description" or="description" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <section xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:publisher" or="publisher" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dcat:endpointURL" or="endpointUrl" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dcat:endpointDescription" or="endpointDescription" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService" />
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dcat:servesDataset" or="servesDataset" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
           <action type="associatedResource" name="linkToDataset" process="dataset"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dcat:keyword" or="keyword" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:MAGDA-categorie" or="MAGDA-categorie" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:statuut" or="statuut" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dcat:theme" or="theme" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:identifier" or="identifier" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
         </section>
 
-        <section name="versionInformation">
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/owl:versionInfo" or="versionInfo" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-        </section>
-        <section name="usageInformation">
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dcat:contactPoint" or="contactPoint" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dcat:landingPage" or="landingPage" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:landingspaginaVoorAuthenticatie" or="landingspaginaVoorAuthenticatie" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:landingspaginaVoorStatusinformatie" or="landingspaginaVoorStatusinformatie" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:landingspaginaVoorGebruiksinformatie" or="landingspaginaVoorGebruiksinformatie" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:rights" or="rights" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-        </section>
         <section name="serviceInformation">
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:levensfase" or="levensfase" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/mdcat:ontwikkelingstoestand" or="ontwikkelingstoestand" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:accessRights" or="accessRights" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
           <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:license" or="license" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
         </section>
-        <section name="extraInformation">
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:language" or="language" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dcat:qualifiedRelation" or="qualifiedRelation" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:conformsTo" or="conformsTo" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:creator" or="creator" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:isReferencedBy" or="isReferencedBy" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:created" or="created" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:issued" or="issued" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:modified" or="modified" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:relation" or="relation" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-          <field xpath="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService/dct:type" or="type" in="/rdf:RDF/dcat:Catalog/dcat:service/dcat:DataService"/>
-        </section>
+
       </tab>
 
       <tab id="tabAdvancedRecord" mode="flat">
@@ -1147,27 +913,9 @@
 
   <snippets>
     <list name="licenses">
-      <snippet label="license-modellicentie-gratis">
-        <dct:license>
-          <dct:LicenseDocument rdf:about="https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0">
-            <dct:type>
-              <skos:Concept rdf:about="http://purl.org/adms/licencetype/Attribution">
-                <skos:prefLabel xml:lang="nl">Verplichte bronvermelding</skos:prefLabel>
-                <skos:prefLabel xml:lang="en">Attribution</skos:prefLabel>
-                <skos:prefLabel xml:lang="fr">Attribution</skos:prefLabel>
-                <skos:prefLabel xml:lang="de">Attribution</skos:prefLabel>
-                <skos:inScheme rdf:resource="http://purl.org/adms/licencetype/1.0"/>
-              </skos:Concept>
-            </dct:type>
-            <dct:title xml:lang="nl">Modellicentie voor gratis hergebruik</dct:title>
-            <dct:description xml:lang="nl">Onder deze licentie doet de instantie geen afstand van haar intellectuele rechten, maar mag de data voor eender welk doel hergebruikt worden, gratis en onder minimale restricties.</dct:description>
-            <dct:identifier>https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0</dct:identifier>
-          </dct:LicenseDocument>
-        </dct:license>
-      </snippet>
       <snippet label="license-cc0">
         <dct:license>
-          <dct:LicenseDocument rdf:about="https://data.vlaanderen.be/id/licentie/creative-commons-zero-verklaring/v1.0">
+          <dct:LicenseDocument rdf:about="https://creativecommons.org/publicdomain/zero/1.0/">
             <dct:type>
               <skos:Concept rdf:about="http://purl.org/adms/licencetype/PublicDomain">
                 <skos:prefLabel xml:lang="nl">Werk in het publiek domein</skos:prefLabel>
@@ -1178,42 +926,8 @@
               </skos:Concept>
             </dct:type>
             <dct:title xml:lang="nl">Creative Commons Zero verklaring</dct:title>
-            <dct:description xml:lang="nl">De instantie doet afstand van haar intellectuele eigendomsrechten voor zover dit wettelijk mogelijk is. Hierdoor kan de gebruiker de data hergebruiken voor eender welk doel, zonder een verplichting op naamsvermelding. Deze is de welbekende CC0 licentie.</dct:description>
+            <dct:description xml:lang="nl">https://creativecommons.org/publicdomain/zero/1.0/</dct:description>
             <dct:identifier>https://data.vlaanderen.be/id/licentie/creative-commons-zero-verklaring/v1.0</dct:identifier>
-          </dct:LicenseDocument>
-        </dct:license>
-      </snippet>
-      <snippet label="license-modellicentie-hergebruik">
-        <dct:license>
-          <dct:LicenseDocument rdf:about="https://data.vlaanderen.be/id/licentie/modellicentie-hergebruik-tegen-vergoeding/v1.0">
-            <dct:type>
-              <skos:Concept rdf:about="http://purl.org/adms/licencetype/Attribution">
-                <skos:prefLabel xml:lang="nl">Verplichte bronvermelding</skos:prefLabel>
-                <skos:prefLabel xml:lang="en">Attribution</skos:prefLabel>
-                <skos:prefLabel xml:lang="fr">Attribution</skos:prefLabel>
-                <skos:prefLabel xml:lang="de">Attribution</skos:prefLabel>
-                <skos:inScheme rdf:resource="http://purl.org/adms/licencetype/1.0" />
-              </skos:Concept>
-            </dct:type>
-            <dct:title xml:lang="nl">Modellicentie voor hergebruik tegen vergoeding</dct:title>
-            <dct:description xml:lang="nl">Onder deze licentie stelt de instantie nog steeds haar data ter beschikking voor eender welk hergebruik, maar wil zij hiervoor een vergoeding ontvangen. In regel is deze vergoeding beperkt tot de marginale kosten voor vermenigvuldiging, verstrekking en verspreiding.</dct:description>
-            <dct:identifier>https://data.vlaanderen.be/id/licentie/modellicentie-hergebruik-tegen-vergoeding/v1.0</dct:identifier>
-          </dct:LicenseDocument>
-        </dct:license>
-      </snippet>
-      <snippet label="license-onvoorwaardelijk">
-        <dct:license>
-          <dct:LicenseDocument rdf:about="https://data.vlaanderen.be/id/licentie/onvoorwaardelijk-hergebruik/v1.0">
-            <dct:type>
-              <skos:Concept rdf:about="http://purl.org/adms/licencetype/PublicDomain">
-                <skos:prefLabel xml:lang="nl">Werk in het publiek domein</skos:prefLabel>
-                <skos:prefLabel xml:lang="en">Public domain</skos:prefLabel>
-                <skos:inScheme rdf:resource="http://purl.org/adms/licencetype/1.0" />
-              </skos:Concept>
-            </dct:type>
-            <dct:title xml:lang="nl">Onvoorwaardelijk hergebruik</dct:title>
-            <dct:description xml:lang="nl">Onvoorwaardelijk hergebruik</dct:description>
-            <dct:identifier>https://data.vlaanderen.be/id/licentie/onvoorwaardelijk-hergebruik/v1.0</dct:identifier>
           </dct:LicenseDocument>
         </dct:license>
       </snippet>
@@ -1233,7 +947,7 @@
         </dct:license>
       </snippet>
     </list>
-    <list name="protocols">
+    <list name="protocols-vl">
       <snippet label="protocol-01">
         <dct:conformsTo>
           <dct:Standard rdf:about="https://data.vlaanderen.be/id/concept/dataserviceprotocol/ESRI:AIMS-http-configuration">

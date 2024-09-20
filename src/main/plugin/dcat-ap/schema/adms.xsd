@@ -27,6 +27,6 @@
   <!-- individual elements-->
   <xs:element name="status" type="skos:Concept"/>
   <xs:element name="identifier" type="adms:Identifier"/>
-  <xs:element name="sample" type="dcat:Distribution"/>
+  <xs:element name="sample" type="dcat:Distribution_type"/>
   <xs:element name="versionNotes" type="rdf:PlainLiteral"/>
 </xs:schema>
